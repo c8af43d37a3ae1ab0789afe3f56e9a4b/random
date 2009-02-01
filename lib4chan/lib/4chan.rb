@@ -5,6 +5,7 @@ $LOAD_PATH << File::split(__FILE__).first
 
 require 'Homepage.rb'
 require 'Thread.rb'
+require 'Post.rb'
 
 module FourChan
 
