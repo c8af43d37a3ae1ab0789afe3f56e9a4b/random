@@ -31,8 +31,8 @@ module FourChan
 		end
 		alias homepage home
 
-		def thread
-			raise 'incomplete'
+		def thread url
+			Thread.new url
 		end
 
 		def board
@@ -54,7 +54,7 @@ module FourChan
 			@thread_summaries
 		end
 		def threads
-			@threa_summaries.map do |summary|
+			@thread_summaries.map do |summary|
 				summary.thread
 			end
 		end

@@ -2,35 +2,36 @@ module FourChan
 	class ThreadSummaries < Array
 	end
 	class ThreadSummary
-			Attributes = %w{
-				prefix
+		Attributes = %w{
+			prefix
 
-				thread_link
+			thread_link
 
-				image_link
+			image_link
 
-				thumbnail
+			thumbnail
 
-				poster
-				
-				post_number
-				post_text
+			poster
+			
+			post_number
+			post_text
 
-				date
-			}
-			Attributes.each do |key|
-				attr_accessor key.to_sym
-			end
+			date
+		}
+		Attributes.each do |key|
+			attr_accessor key.to_sym
+		end
 
 		def thread
 			Thread.new URI::parse(thread_link.link)
 		end
 	end
-	class Threads < Hash
-		def << thread
-		end
+	class Threads < Array
 	end
 	class Thread
+
+		attr :posts
+
 		def initialize uri
 			connection = open uri
 

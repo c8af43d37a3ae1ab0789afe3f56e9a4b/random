@@ -105,7 +105,5 @@ dom = Hpricot::parse open(ARGV[0])
 			puts "___#{method}___"
 			puts lookup[method].inspect
 		end
-
-		gets
 	end
 end
