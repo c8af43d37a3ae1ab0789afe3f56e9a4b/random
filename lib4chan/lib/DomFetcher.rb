@@ -41,9 +41,34 @@ module FourChan
 
 			key = uri.host, uri.port
 
+			server = setup_server key
+
+			req = Net::HTTP::Get.new uri.path,
+				"User-Agent" => UserAgent
+
+			# req.basic_auth(username, password)
+			
+			#
+			# catch any potential timeouts once
+			#
+			begin
+				response = server.request(req)
+			rescue Timeout::Error
+				server = setup_server key, true
+				response = server.request(req)
+			end
+
+			dom = Hpricot::parse response.body
+
+			return dom
+		end
+
+	private
+
+		def self.setup_server key, reset = false
 			server = @@server_connections[key]
 
-			unless server
+			if reset || ! server
 				http = Net::HTTP.new *key
 				# http.use_ssl = true
 				
@@ -52,16 +77,7 @@ module FourChan
 				@@server_connections[key] = server
 			end
 
-			req = Net::HTTP::Get.new uri.path,
-				"User-Agent" => UserAgent
-
-			# req.basic_auth(username, password)
-			
-			response = server.request(req)
-
-			dom = Hpricot::parse response.body
-
-			return dom
+			server
 		end
 
 	end
