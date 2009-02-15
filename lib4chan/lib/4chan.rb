@@ -1,13 +1,15 @@
 $LOAD_PATH << File::split(__FILE__).first
 
-require 'Homepage.rb'
-require 'Thread.rb'
-require 'Threads.rb'
 require 'Post.rb'
+	require 'Thread.rb'
+		require 'Threads.rb'
+		require 'ThreadSummary.rb'
+			require 'ThreadSummaries.rb'
+			require 'ThreadSummarizer.rb'
+				require 'Homepage.rb'
+				require 'Board.rb'
 require 'DomFetcher.rb'
-require 'ThreadSummary.rb'
-require 'ThreadSummaries.rb'
-require 'ThreadSummarizer.rb'
+	require 'PageParser.rb'
 
 module FourChan
 

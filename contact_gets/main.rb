@@ -32,7 +32,6 @@ if ARGV[0]
 else
 	FourChan::homepage.threads.each do |thread|
 		parse_thread thread
-		exit
 	end
 end
 

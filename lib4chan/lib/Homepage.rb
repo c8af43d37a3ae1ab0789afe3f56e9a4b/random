@@ -1,21 +1,15 @@
 module FourChan
 
-	private
+private
 
 	class Homepage
+		include ThreadSummarizer
+
 		def initialize uri
 			buildThreadSummaries
 		end
-		def threadSummaries
-			@thread_summaries
-		end
-		def threads
-			@thread_summaries.map do |summary|
-				summary.thread
-			end
-		end
 
-		private
+	private
 
 		def buildThreadSummaries
 			@thread_summaries = ThreadSummaries.new
