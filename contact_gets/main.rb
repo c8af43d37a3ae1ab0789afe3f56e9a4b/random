@@ -27,7 +27,7 @@ def parse_thread thread
 end
 
 if ARGV[0]
-	thread = FourChan::Thread.new ARGV[0]
+	thread = FourChan::Thread.new URI::parse(ARGV[0])
 	parse_thread thread
 else
 	FourChan::homepage.threads.each do |thread|

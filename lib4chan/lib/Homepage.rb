@@ -10,7 +10,7 @@ module FourChan
 			@thread_summaries
 		end
 		def threads
-			@threa_summaries.map do |summary|
+			@thread_summaries.map do |summary|
 				summary.thread
 			end
 		end
