@@ -20,7 +20,7 @@ module FourChan
 		def buildThreadSummaries
 			@thread_summaries = ThreadSummaries.new
 
-			dom = FourChan::fetchDom HomepageURL
+			dom = DomFetcher::fetch HomepageURL
 
 			( dom / "#popular-threads" / ".boxcontent" / "li" ).each do |thread_element|
 				summary = ThreadSummary.new

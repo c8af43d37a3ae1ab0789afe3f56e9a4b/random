@@ -35,7 +35,7 @@ module FourChan
 		def initialize uri
 			@posts = Posts.new
 
-			dom = FourChan::fetchDom uri
+			dom = DomFetcher::fetch uri
 
 			parse_dom dom
 		end
