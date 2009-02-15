@@ -33,11 +33,10 @@ module FourChan
 		attr :posts
 
 		def initialize uri
-			connection = open uri
-
 			@posts = Posts.new
 
-			dom = Hpricot::parse connection
+			dom = fetchDom uri
+
 			parse_dom dom
 		end
 

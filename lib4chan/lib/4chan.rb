@@ -1,11 +1,9 @@
-require 'hpricot'
-require 'open-uri'
-
 $LOAD_PATH << File::split(__FILE__).first
 
 require 'Homepage.rb'
 require 'Thread.rb'
 require 'Post.rb'
+require 'DomFetcher.rb'
 
 module FourChan
 
@@ -64,8 +62,8 @@ module FourChan
 		def buildThreadSummaries
 			@thread_summaries = ThreadSummaries.new
 
-			connection = open HomepageURL
-			dom = Hpricot.parse connection
+			dom = fetchDom HomepageURL
+
 			( dom / "#popular-threads" / ".boxcontent" / "li" ).each do |thread_element|
 				summary = ThreadSummary.new
 

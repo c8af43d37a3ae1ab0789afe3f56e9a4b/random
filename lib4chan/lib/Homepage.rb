@@ -20,8 +20,8 @@ module FourChan
 		def buildThreadSummaries
 			@thread_summaries = ThreadSummaries.new
 
-			connection = open HomepageURL
-			dom = Hpricot.parse connection
+			dom = fetchDom HomepageURL
+
 			( dom / "#popular-threads" / ".boxcontent" / "li" ).each do |thread_element|
 				summary = ThreadSummary.new
 
