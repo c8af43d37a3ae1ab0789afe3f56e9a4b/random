@@ -2,16 +2,17 @@ $LOAD_PATH << File::split(__FILE__).first
 
 require 'Homepage.rb'
 require 'Thread.rb'
-require 'Threads.rb'
 require 'Post.rb'
 require 'DomFetcher.rb'
-require 'ThreadSummary.rb'
-require 'ThreadSummaries.rb'
-require 'ThreadSummarizer.rb'
 
 module FourChan
 
 	HomepageURL = URI::parse "http://www.4chan.org/"
+	Resolution = Struct.new :x, :y
+	ImageLink = Struct.new :link, :text, :file_size, :resolution
+	Thumbnail = Struct.new :source, :resolution
+	ThreadLink = Struct.new :link, :text
+	Poster = Struct.new :name, :email, :trip
 
 	# Module Methods
 	class << self
@@ -32,22 +33,16 @@ module FourChan
 			Thread.new url
 		end
 
-		def board url
-			Board.new url
+		def board
+			raise 'incomplete'
 		end
 
 		def boards
-			home.boards
+			raise 'incomplete'
 		end
 	end
 
-private
-
-	Resolution = Struct.new :x, :y
-	ImageLink = Struct.new :link, :text, :file_size, :resolution
-	Thumbnail = Struct.new :source, :resolution
-	ThreadLink = Struct.new :link, :text
-	Poster = Struct.new :name, :email, :trip
+	private
 
 	class Homepage
 		def initialize uri
