@@ -1,3 +1,3 @@
-Dir['tests/*.rb'].each do |test|
-	`spec #{test}
-end
+#!/usr/bin/ruby
+
+`spec test`

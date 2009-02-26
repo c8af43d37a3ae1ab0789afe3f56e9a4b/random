@@ -1,10 +1,17 @@
 require 'lib/4chan.rb'
 require 'stringio'
 
+# Publicise methods
+
+module FourChan
+	PageParser2 = PageParser
+	PPGSP = PPGS
+end
+
 describe FourChan do
 	it "Should provide a means to parse documents." do
 
-		describe PageParser do
+		describe FourChan::PageParser2 do
 
 			it "Should parse documents into managable structures using a supplied grammar" do
 
@@ -27,8 +34,8 @@ describe FourChan do
 					</html>
 				EOF
 
-				grammar = PPGS.new('Root', {
-					'/html/body/div.post' => PPGS.new('Posts', {
+				grammar = FourChan::PPGSP.new('Root', {
+					'/html/body/div.post' => FourChan::PPGSP.new('Posts', {
 						'.email' => 'email',
 						'.message' => 'post'
 					})
@@ -47,7 +54,7 @@ describe FourChan do
 					]
 				}
 
-				parsed = PageParser.parse doc, grammar
+				parsed = FourChan::PageParser2.parse doc, grammar
 
 				parsed.should equal(expected)
 

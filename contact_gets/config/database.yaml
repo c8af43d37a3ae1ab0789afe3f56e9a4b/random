@@ -1,0 +1,4 @@
+--- 
+:database: 
+  :type: :sqlite3
+  :location: database/db.sqlite3

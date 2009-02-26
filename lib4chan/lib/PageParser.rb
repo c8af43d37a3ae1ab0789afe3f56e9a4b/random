@@ -54,7 +54,7 @@ module FourChan
 		# Recursive function for parsing a DOM
 		# using a provided grammar.
 		#
-		def inner_parse dom, grammar
+		def self.inner_parse dom, grammar
 			result = ParsedPageSection.new
 
 			grammar.each do |key,value|

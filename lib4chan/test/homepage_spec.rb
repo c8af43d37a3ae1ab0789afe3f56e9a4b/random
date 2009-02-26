@@ -48,20 +48,6 @@ describe FourChan do
 					end
 				end
 			end
-
-			it "should fetch the current threads from the homepage" do
-				pending "do the thread summaries first"
-				active_threads = homepage.threads
-			end
-
-			it "should fetch other stuff" do
-				pending "not done yet though"
-
-				active_images = homepage.images
-				active_posts = homepage.posts
-				active_boards = homepage.posts
-				active_stats = homepage.posts
-			end
 		end
 	end
 end

@@ -1,10 +1,11 @@
 #!/usr/bin/ruby
 
 require "../lib4chan/lib/4chan.rb"
+require "activerecord"
 
 Description_regex = %r{\b\w+/\w+/\w+\b}
 Contact_regex = %r{\w+@\w+}
-Gender_regex = %r{/f[^/]*/}i
+Gender_regex = %r{/f[^/]*/|female|cumdumpster}i
 
 @contacts = Hash.new
 
