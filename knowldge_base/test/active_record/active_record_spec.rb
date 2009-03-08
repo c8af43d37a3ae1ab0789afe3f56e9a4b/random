@@ -1,11 +1,14 @@
 #!/usr/bin/ruby
 
-describe "Activerecord" do
+require 'sqlite3'
+require 'activerecord'
+require 'pp'
+
+ActiveRecord::Base.allow_concurrency = true
+
+describe ActiveRecord do
 
 	before :all do
-		require 'sqlite3'
-		require 'activerecord'
-		require 'pp'
 
 		DB_FILE = 'activeRecordTest.db'
 		DB = SQLite3::Database.new DB_FILE
@@ -22,28 +25,28 @@ describe "Activerecord" do
 				end
 			end
 		end
-		
-		it "should connect to the database correctly" do
-			ActiveRecord::Base.establish_connection(
-				:adapter => 'sqlite3',
-				:database => DB_FILE
-				# :database => ":memory"
-			)
-		end
 
-		it "shout create tables using migrations" do
-			Schema::SetupPeople.migrate :up
-		end
 	end
 
 	after :all do
 		File::delete DB_FILE
 	end
 
+	it "should connect to the database correctly" do
+		ActiveRecord::Base.establish_connection(
+			:adapter => 'sqlite3',
+			:database => DB_FILE
+			# :database => ":memory"
+		)
+	end
+
+	it "shout create tables using migrations" do
+		Schema::SetupPeople.migrate :up
+	end
 
 	it "should create records in the database" do
 		# Define the serializable classes
-
+		
 		class Person < ActiveRecord::Base
 			set_table_name 'people'
 		end
@@ -51,6 +54,8 @@ describe "Activerecord" do
 		# Create some stuff
 
 		p1 = Person.find_or_initialize_by_name "Joe Schmoe"
+		p1.name = "Joe Blow"
+		p1.save
 
 	end
 
